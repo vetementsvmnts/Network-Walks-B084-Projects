@@ -52,9 +52,9 @@ This range exists for learning, research, and authorized security testing. Only 
 
 ## Lab Architecture
 
-![Lab architecture](docs/images/01-lab-architecture.png)
+![Lab architecture](Assets/Lab-architecture.png)
 
-*Figure 1. Logical topology: one NAT Network shared by attacker, target, and monitoring nodes, with VirtualBox providing the gateway, DHCP, and outbound NAT.*
+*Figure 1. VirtualBox Manager showing the range inventory: Kali (running), Ubuntu, Windows victim, and Wazuh server, all attached to one NAT Network.*
 
 ### Node Inventory
 
@@ -64,10 +64,6 @@ This range exists for learning, research, and authorized security testing. Only 
 | `Ubuntu-Machine` | Target / general-purpose Linux | Powered off | Linux services and misconfiguration targets |
 | `Windows-Victim-Machine` | Target (Windows 10) | Saved | Windows attack surface and endpoint telemetry source |
 | `Wazuh-Server` | Monitoring / SIEM | Powered off | Log aggregation, alerting, and detection validation |
-
-![VirtualBox inventory](docs/images/02-virtualbox-inventory.png)
-
-*Figure 2. VirtualBox Manager showing the range inventory.*
 
 ### Host & Attacker Configuration
 
@@ -145,9 +141,9 @@ IPv6:         Disabled
 
 GUI path: **File → Tools → Network Manager → NAT Networks**.
 
-![NAT Network configuration](docs/images/03-nat-network.png)
+![NAT Network configuration](Assets/Nat-Network.png)
 
-*Figure 3. NAT Network definition in VirtualBox Network Manager.*
+*Figure 2. NAT Network definition in VirtualBox Network Manager: `NatNetwork`, `10.0.0.0/24`, DHCP enabled, IPv6 disabled.*
 
 The same network can be created reproducibly from the CLI:
 
@@ -188,9 +184,9 @@ sudo nmcli connection down "Wired connection 1"
 sudo nmcli connection up   "Wired connection 1"
 ```
 
-![Static IPv4 configuration](docs/images/04-kali-static-ip.png)
+![Static IPv4 configuration](Assets/Network_and_SF_Setup.png)
 
-*Figure 4. Manual IPv4 configuration on the Kali node: `10.0.0.2/24`, gateway `10.0.0.1`, DNS `8.8.8.8, 1.1.1.1`.*
+*Figure 3. Manual IPv4 configuration on the Kali node (`10.0.0.2/24`, gateway `10.0.0.1`, DNS `8.8.8.8, 1.1.1.1`), shown with the connection cycle and the shared folder listing.*
 
 ### Step 5. Configure the shared folder
 
@@ -209,9 +205,9 @@ The guest user must belong to the `vboxsf` group to access the mount. Log out an
 sudo usermod -aG vboxsf $USER
 ```
 
-![Shared folder settings](docs/images/05-shared-folder-settings.png)
+![Shared folder settings](Assets/Shared-Folders.png)
 
-*Figure 5. Shared folder definition in the VM settings.*
+*Figure 4. Shared folder definition in the VM settings: host Downloads directory, full access, auto-mount enabled.*
 
 ### Step 6. Capture the clean baseline snapshot
 
@@ -246,9 +242,13 @@ Every claim in the build is backed by a test. Run these after any network change
 | Shared folder | Group membership and write | `id \| grep vboxsf` then `touch /media/sf_downloads/lab-test.txt` | File created and visible on the host |
 | Recovery | Snapshot restore | Restore baseline, then `ip -br a` | Baseline configuration restored |
 
-![Connectivity and shared folder verification](docs/images/06-verification.png)
+![Connectivity verification](Assets/connectivity-verification.png)
 
-*Figure 6. Verification evidence: connection cycled, external IP and DNS reachable with 0% loss, and a test file written to the shared folder.*
+*Figure 5. Connection cycled with `nmcli`, `vboxsf` group membership applied, and external reachability confirmed (4/4 replies from 8.8.8.8, 0% loss).*
+
+![Shared folder write test](Assets/shared-folder-write-test.png)
+
+*Figure 6. Shared folder write test: the first attempt hangs at a `dquote>` prompt because zsh expands `!` inside double quotes. The retry succeeds, and `ls -l` confirms `lab-test.txt` exists on the `root:vboxsf` mount.*
 
 ### Observed Results
 
@@ -288,7 +288,7 @@ sudo nmcli connection down "Wired connection 1" && sudo nmcli connection up "Wir
 
 ### 3. Shell hangs on a `dquote>` prompt
 
-**Symptom:** A command such as `touch file && echo "Shared folder is writable!"` drops into a `cmdand dquote>` continuation prompt.
+**Symptom:** A command such as `touch file && echo "Shared folder is writable!"` drops into a `cmdand dquote>` continuation prompt (see Figure 6).
 **Cause:** In zsh (Kali's default shell), `!` inside double quotes triggers history expansion, leaving the string unterminated.
 **Fix:** Use single quotes, or drop the exclamation mark:
 
