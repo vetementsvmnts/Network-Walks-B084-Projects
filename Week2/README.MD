@@ -26,8 +26,7 @@
 | | |
 |---|---|
 | **Operator** | Kitsana Thuekoh ([@vetementsvmnts](https://github.com/vetementsvmnts)) |
-| **Role** | Penetration Tester · Offensive Security Researcher |
-| **Credentials** | OSCP · HTB CPTS · CompTIA PenTest+ · Security+ · ISC2 CC |
+| **Role** | Cybersecurity Engineer · Offensive Security Researcher |
 | **Programme** | Network Walks – Cybersecurity & Ethical Hacking (Batch B084) |
 | **Engagement** | Week 2 – Footprinting & Reconnaissance |
 
