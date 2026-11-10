@@ -79,11 +79,11 @@ flowchart LR
 
 > All activity was performed in a training context against targets designated by the programme, using **non-intrusive, read-only techniques**.
 
-- ✅ Passive and low-noise collection only. No exploitation, brute force, credential attacks or denial of service.
-- ✅ Targets restricted to programme-designated lab assets and public OSINT sources.
-- ✅ No authentication attempted against any discovered third-party system. Search-engine discovery is documented as *methodology*; third-party hosts are intentionally **not** listed in this repository.
-- ✅ Maltego email enumeration run against the course domain with permission, per the module brief.
-- ⚠️ Techniques here must only be used against systems you own or hold **written authorisation** to test.
+-  Passive and low-noise collection only. No exploitation, brute force, credential attacks or denial of service.
+-  Targets restricted to programme-designated lab assets and public OSINT sources.
+-  No authentication attempted against any discovered third-party system. Search-engine discovery is documented as *methodology*; third-party hosts are intentionally **not** listed in this repository.
+-  Maltego email enumeration run against the course domain with permission, per the module brief.
+-  Techniques here must only be used against systems you own or hold **written authorisation** to test.
 
 ---
 
@@ -123,15 +123,15 @@ dnsrecon -d networkwalks.com
 
 | ID | Finding | Evidence | Rating | Why it matters |
 |:---:|---|---|:---:|---|
-| F-01 | Software version disclosure (CMS, plugin, DNS daemon) | `whatweb`, `dnsrecon` | 🟠 **Medium** | Exact versions let an attacker pivot straight to CVE and exploit-database lookups, skipping fingerprinting. |
-| F-02 | WordPress REST API discoverable | `curl -I` `Link` header | 🟡 **Low** | Confirms CMS and gives a clean entry point for user and route enumeration. |
-| F-03 | Shared hosting fingerprint | `whois` NS, `nslookup` | 🟡 **Low** | Reveals provider and neighbouring-tenant risk; informs hosting-specific attack paths. |
-| F-04 | SPF policy ends in soft-fail (`~all`) | `dnsrecon` TXT | 🟡 **Low** | Weaker spoofing resistance than hard-fail; useful to a phishing operator. |
-| F-05 | DNSSEC not enabled | `whois` | 🔵 **Info** | Resolver-level tampering protection absent; common but worth noting. |
-| F-06 | Public role mailbox exposed | `whatweb`, Maltego | 🔵 **Info** | Phishing and password-spray target. Standard for public sites, so mitigate with MFA and filtering. |
-| F-07 | cPanel autodiscover SRV records published | `dnsrecon` | 🔵 **Info** | Signals control-panel hosting and mail stack layout. |
-| F-08 | WAF present (ModSecurity) | `wafw00f` | 🟢 **Positive** | Raises attacker cost; confirms a defensive layer exists. |
-| F-09 | Cookies flagged `Secure` + `HttpOnly` | `curl -I` | 🟢 **Positive** | Good baseline session-cookie hygiene. |
+| F-01 | Software version disclosure (CMS, plugin, DNS daemon) | `whatweb`, `dnsrecon` |  **Medium** | Exact versions let an attacker pivot straight to CVE and exploit-database lookups, skipping fingerprinting. |
+| F-02 | WordPress REST API discoverable | `curl -I` `Link` header |  **Low** | Confirms CMS and gives a clean entry point for user and route enumeration. |
+| F-03 | Shared hosting fingerprint | `whois` NS, `nslookup` |  **Low** | Reveals provider and neighbouring-tenant risk; informs hosting-specific attack paths. |
+| F-04 | SPF policy ends in soft-fail (`~all`) | `dnsrecon` TXT |  **Low** | Weaker spoofing resistance than hard-fail; useful to a phishing operator. |
+| F-05 | DNSSEC not enabled | `whois` |  **Info** | Resolver-level tampering protection absent; common but worth noting. |
+| F-06 | Public role mailbox exposed | `whatweb`, Maltego |  **Info** | Phishing and password-spray target. Standard for public sites, so mitigate with MFA and filtering. |
+| F-07 | cPanel autodiscover SRV records published | `dnsrecon` |  **Info** | Signals control-panel hosting and mail stack layout. |
+| F-08 | WAF present (ModSecurity) | `wafw00f` | **Positive** | Raises attacker cost; confirms a defensive layer exists. |
+| F-09 | Cookies flagged `Secure` + `HttpOnly` | `curl -I` |  **Positive** | Good baseline session-cookie hygiene. |
 
 ---
 
@@ -202,19 +202,11 @@ theHarvester -d microsoft.com -l 50 -b all
 - **Defenders see what attackers see.** The most useful framing of footprinting is as a *self-audit*.
 - **Evidence discipline matters.** Every command, timestamp and screenshot is preserved so findings are reproducible and reportable.
 
----
 
-## `> next phase`
 
-```text
-[✓] Reconnaissance & footprinting          <- you are here
-[ ] Scanning & enumeration (Nmap, service/version detection)
-[ ] Vulnerability analysis
-[ ] Controlled exploitation (in lab scope)
-[ ] Reporting & remediation
-```
 
----
+
+
 
 <div align="center">
 
