@@ -8,7 +8,7 @@
 
 ![Phase](https://img.shields.io/badge/Phase-1%20Recon%20%26%20Footprinting-blue)
 ![Phase](https://img.shields.io/badge/Phase-2%20Scanning%20%26%20Discovery-blue)
-![Status](https://img.shields.io/badge/Phases%203--5-In%20Progress-lightgrey)
+![Status](https://img.shields.io/badge/Phases%203--5-Completed%20Progress-lightgrey)
 ![Authorized](https://img.shields.io/badge/Permission-Secured-brightgreen)
 
 </div>
@@ -25,7 +25,7 @@
 | **Evidence captured** | 14 August 2026 (per tool and server timestamps in the screenshots) |
 | **Modules completed** | W2-PM1 (Multiple Kali Tools) · W2-PM5 (Zenmap Scanning) |
 | **Targets** | 1. `networkwalks.com` (written permission secured)<br>2. My own local LAN |
-| **Permission secured?** | ✅ Yes |
+| **Permission secured?** |  Yes |
 | **Phases covered** | **Phase 1:** Reconnaissance & Footprinting<br>**Phase 2:** Scanning & Network Discovery<br>**Phases 3–5:** In progress |
 
 ## 📑 Table of Contents
