@@ -12,12 +12,12 @@
 ```text
 ╔══════════════════════════════════════════════════════════════════╗
 ║  W2-PM5 :: NETWORK DISCOVERY & HOST ENUMERATION                  ║
-║  target   : 10.0.0.0/24 (lab LAN)   tool : Nmap 7.91 / Zenmap   ║
+║  target   : 10.0.0.0/24 (lab LAN)   tool : Nmap 7.91 / Zenmap    ║
 ║  platform : Windows 10              mode : active (host discovery)║
 ╚══════════════════════════════════════════════════════════════════╝
 ```
 
-# 📡 Network Scanning with Zenmap
+#  Network Scanning with Zenmap
 
 **Network Walks · Week 2 · Project Module 5**
 *Live-host discovery, MAC attribution and topology mapping of a lab subnet*
@@ -33,30 +33,8 @@
 
 </div>
 
----
 
-## 📑 Table of Contents
-
-1. [Executive Summary](#-executive-summary)
-2. [Scope & Rules of Engagement](#-scope--rules-of-engagement)
-3. [Lab Environment](#-lab-environment)
-4. [Methodology](#-methodology)
-5. [Task 1 — Install Nmap & Zenmap](#-task-1--install-nmap--zenmap)
-6. [Task 2 — Local IP & LAN Subnet](#-task-2--local-ip--lan-subnet)
-7. [Task 3 — Live Host Discovery](#-task-3--live-host-discovery)
-8. [Tasks 4–6 — Host Count, IPs and MACs](#-tasks-46--host-count-ips-and-macs)
-9. [Task 7 — Topology Export](#-task-7--topology-export)
-10. [Technical Analysis](#-technical-analysis)
-11. [MITRE ATT&CK Mapping](#-mitre-attck-mapping)
-12. [Defensive Recommendations](#-defensive-recommendations)
-13. [Reproducing This Lab](#-reproducing-this-lab)
-14. [Repository Structure](#-repository-structure)
-15. [References](#-references)
-16. [Disclaimer](#-disclaimer)
-
----
-
-## 🎯 Executive Summary
+##  Executive Summary
 
 Network discovery answers the first operational question of any assessment: **what is actually alive on this segment?** This module uses **Zenmap**, the official GUI front end for Nmap, to sweep a `/24` lab subnet, enumerate responsive hosts, attribute each to a hardware address, and export the resulting topology.
 
@@ -80,7 +58,7 @@ Network discovery answers the first operational question of any assessment: **wh
 
 ---
 
-## 🧭 Scope & Rules of Engagement
+##  Scope & Rules of Engagement
 
 | Item | Detail |
 |:---|:---|
@@ -95,7 +73,7 @@ Network discovery answers the first operational question of any assessment: **wh
 
 ---
 
-## 🖥️ Lab Environment
+##  Lab Environment
 
 | Component | Value |
 |:---|:---|
@@ -109,7 +87,7 @@ Network discovery answers the first operational question of any assessment: **wh
 
 ---
 
-## 🔬 Methodology
+##  Methodology
 
 ```mermaid
 flowchart LR
@@ -163,7 +141,7 @@ On a directly connected Ethernet segment, Nmap uses **ARP requests** for host di
 
 ---
 
-## 1️⃣ Task 1 — Install Nmap & Zenmap
+##  Task 1 — Install Nmap & Zenmap
 
 **Objective:** Download and install Zenmap from the official source on a Windows PC.
 
@@ -182,11 +160,11 @@ On a directly connected Ethernet segment, Nmap uses **ARP requests** for host di
 
 </div>
 
-> 🔐 **Operational note:** always download security tooling from the official project site and verify the installer's signature or checksum where provided. Trojanised copies of popular scanners are a known supply-chain lure.
+>  **Operational note:** always download security tooling from the official project site and verify the installer's signature or checksum where provided. Trojanised copies of popular scanners are a known supply-chain lure.
 
 ---
 
-## 2️⃣ Task 2 — Local IP & LAN Subnet
+##  Task 2 — Local IP & LAN Subnet
 
 **Objective:** Identify the workstation's IPv4 address and LAN subnet.
 
@@ -211,7 +189,7 @@ A mask of `255.255.255.0` gives 24 network bits, so the sweep range is `10.0.0.0
 
 ---
 
-## 3️⃣ Task 3 — Live Host Discovery
+##  Task 3 — Live Host Discovery
 
 **Objective:** List the live hosts on the subnet using Zenmap's Ping scan.
 
@@ -251,7 +229,7 @@ Nmap done: 256 IP addresses (4 hosts up) scanned in 2.82 seconds
 
 ---
 
-## 4️⃣5️⃣6️⃣ Tasks 4–6 — Host Count, IPs and MACs
+##  Tasks 4–6 — Host Count, IPs and MACs
 
 ### Task 4 · How many hosts are live?
 
@@ -272,7 +250,7 @@ Nmap done: 256 IP addresses (4 hosts up) scanned in 2.82 seconds
 
 ---
 
-## 7️⃣ Task 7 — Topology Export
+##  Task 7 — Topology Export
 
 **Objective:** Display the network topology, review the legend, and save it as a PDF.
 
@@ -300,7 +278,7 @@ Nmap done: 256 IP addresses (4 hosts up) scanned in 2.82 seconds
 
 </div>
 
-📄 Exported artefact: [`Output/topology.pdf`](Output/topology.pdf)
+ Exported artefact: [`Output/topology.pdf`](Output/topology.pdf)
 
 **Reading the topology**
 
@@ -309,7 +287,7 @@ Nmap done: 256 IP addresses (4 hosts up) scanned in 2.82 seconds
 
 ---
 
-## 🧪 Technical Analysis
+##  Technical Analysis
 
 | Observation | Interpretation |
 |:---|:---|
@@ -327,7 +305,7 @@ Nmap done: 256 IP addresses (4 hosts up) scanned in 2.82 seconds
 
 ---
 
-## 🗺️ MITRE ATT&CK Mapping
+## MITRE ATT&CK Mapping
 
 | Tactic | Technique | ID | Relevance |
 |:---|:---|:---:|:---|
@@ -337,7 +315,7 @@ Nmap done: 256 IP addresses (4 hosts up) scanned in 2.82 seconds
 
 ---
 
-## 🛡️ Defensive Recommendations
+##  Defensive Recommendations
 
 | # | Control | Rationale | Priority |
 |:-:|:---|:---|:---:|
@@ -351,7 +329,7 @@ Nmap done: 256 IP addresses (4 hosts up) scanned in 2.82 seconds
 
 ---
 
-## 🔁 Reproducing This Lab
+## Reproducing This Lab
 
 **GUI path**
 
@@ -382,7 +360,7 @@ ndiff Output\baseline.xml Output\ping-scan.xml
 
 ---
 
-## 🗂️ Repository Structure
+# Repository Structure
 
 ```text
 Week2/
@@ -415,7 +393,7 @@ Nmap and Zenmap appear in hacking scenes in several films, including *The Matrix
 
 ---
 
-## 📚 References
+##  References
 
 - [Nmap Reference Guide](https://nmap.org/book/man.html)
 - [Nmap download](https://nmap.org/download.html)
@@ -424,7 +402,7 @@ Nmap and Zenmap appear in hacking scenes in several films, including *The Matrix
 
 ---
 
-## ⚠️ Disclaimer
+##  Disclaimer
 
 This repository documents work completed in a training environment for **education and defensive research only**. Scanning was performed against an owned lab subnet. Do not scan any network without the owner's written authorisation. Unauthorised scanning and access are offences in most jurisdictions.
 
