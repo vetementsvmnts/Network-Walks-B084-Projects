@@ -8,7 +8,7 @@
 ╚══════════════════════════════════════════════════════════════════╝
 ```
 
-#  Footprinting & Reconnaissance with theHarvester
+# 🛰️ Footprinting & Reconnaissance with theHarvester
 
 **Network Walks · Week 2 · Project Module 4**
 *Passive OSINT collection of email addresses, sub-domains and hosts for an external attack-surface assessment*
@@ -24,8 +24,28 @@
 
 </div>
 
+---
 
-##  Executive Summary
+## 📑 Table of Contents
+
+1. [Executive Summary](#-executive-summary)
+2. [Scope & Rules of Engagement](#-scope--rules-of-engagement)
+3. [Lab Environment](#-lab-environment)
+4. [Methodology](#-methodology)
+5. [Task 1 — Baidu Source, Limit 1000](#-task-1--baidu-source-limit-1000)
+6. [Task 2 — All Sources, Limit 50](#-task-2--all-sources-limit-50)
+7. [Comparative Analysis](#-comparative-analysis)
+8. [Threat Model: How an Attacker Uses This Data](#-threat-model-how-an-attacker-uses-this-data)
+9. [MITRE ATT&CK Mapping](#-mitre-attck-mapping)
+10. [Defensive Recommendations](#-defensive-recommendations)
+11. [Reproducing This Lab](#-reproducing-this-lab)
+12. [Repository Structure](#-repository-structure)
+13. [References](#-references)
+14. [Disclaimer](#-disclaimer)
+
+---
+
+## 🎯 Executive Summary
 
 External reconnaissance is the first phase of almost every intrusion, and it is the phase a target is least able to see. This module uses **theHarvester**, an OSINT aggregator written in Python, to enumerate publicly exposed **email addresses, sub-domains and hosts** belonging to `microsoft.com` from third-party data sources, without sending a single packet to the target's infrastructure.
 
@@ -44,7 +64,7 @@ Two runs were performed:
 
 ---
 
-##  Scope & Rules of Engagement
+## 🧭 Scope & Rules of Engagement
 
 | Item | Detail |
 |:---|:---|
@@ -59,7 +79,7 @@ Two runs were performed:
 
 ---
 
-##  Lab Environment
+## 🖥️ Lab Environment
 
 | Component | Value |
 |:---|:---|
@@ -71,7 +91,7 @@ Two runs were performed:
 
 ---
 
-##  Methodology
+## 🔬 Methodology
 
 ```mermaid
 flowchart LR
@@ -92,13 +112,27 @@ flowchart LR
     style F fill:#0d1117,stroke:#00ff41,color:#00ff41
     style G fill:#0d1117,stroke:#00ff41,color:#00ff41
     style H fill:#0d1117,stroke:#c00000,color:#ffffff
+```
 
+### Command-line reference
+
+| Flag | Meaning | Used here |
+|:---:|:---|:---:|
+| `-d` | Target domain or company name | ✅ |
+| `-l` | Limit on search results (tool default: `500`) | ✅ |
+| `-b` | Data source (`baidu`, `crtsh`, `virustotal`, `all`, ...) | ✅ |
+| `-f` | Save results to XML and JSON | ➖ optional |
+| `-n` | DNS lookup on discovered hosts | ❌ (active) |
+| `-c` | DNS brute force | ❌ (active) |
+| `-t` | Subdomain takeover check | ❌ (active) |
+| `-s` | Query Shodan for discovered hosts | ❌ |
+| `-r` | DNS resolution with a resolver list | ❌ (active) |
 
 > The usage banner on the lab host listed more than 40 supported sources, including `baidu`, `bevigil`, `bitbucket`, `brave`, `bufferoverun`, `builtwith`, `censys`, `certspotter`, `crtsh`, `dnsdumpster`, `duckduckgo`, `github-code`, `hunter`, `intelx`, `otx`, `rapiddns`, `securityscorecard`, `shodan`-adjacent modules, `urlscan`, `virustotal`, `waybackarchive` and `zoomeye`.
 
 ---
 
-##  Task 1 — Baidu Source, Limit 1000
+## 🅰️ Task 1 — Baidu Source, Limit 1000
 
 **Objective:** Find email IDs and sub-domains for `microsoft.com` using the Baidu search engine with a result ceiling of 1000.
 
@@ -124,7 +158,7 @@ viva-noreply@microsoft.com
 | IP addresses | **0** |
 | Hosts / sub-domains | **0** |
 
-###  Evidence
+### 📸 Evidence
 
 <div align="center">
 
@@ -142,7 +176,7 @@ viva-noreply@microsoft.com
 
 ---
 
-##  Task 2 — All Sources, Limit 50
+## 🅱️ Task 2 — All Sources, Limit 50
 
 **Objective:** Repeat the collection with every supported module and a result limit of 50.
 
@@ -156,15 +190,15 @@ On the lab host, `-b all` iterated through the modules sequentially. Several key
 
 | Module | Outcome | Cause |
 |:---|:---:|:---|
-| `bevigil` |  Failed | Missing API key |
-| `bitbucket` |  Failed | Missing API key |
-| `bufferoverun` | Failed | Missing API key |
-| `builtwith` |  Failed | Missing API key (`A Missing Key Error occurred`) |
-| `brave` |  Failed | Missing API key (Brave Search) |
+| `bevigil` | ⚠️ Failed | Missing API key |
+| `bitbucket` | ⚠️ Failed | Missing API key |
+| `bufferoverun` | ⚠️ Failed | Missing API key |
+| `builtwith` | ⚠️ Failed | Missing API key (`A Missing Key Error occurred`) |
+| `brave` | ⚠️ Failed | Missing API key (Brave Search) |
 
 Each failure follows the same pattern: *read `/etc/theHarvester/api-keys.yaml` → fail to process the search for `microsoft.com` → report the missing key*, then move on to the next module.
 
-###  Evidence
+### 📸 Evidence
 
 <div align="center">
 
@@ -180,11 +214,11 @@ Each failure follows the same pattern: *read `/etc/theHarvester/api-keys.yaml` �
 - **Free sources carry the load.** Without keys, results depend on keyless providers such as certificate transparency logs (`crtsh`), passive DNS aggregators and web archives. Those are the sources most likely to reveal sub-domains.
 - **A low `-l` is a trade-off.** A limit of 50 keeps run time short but truncates large namespaces like `microsoft.com`. For a real assessment, raise the limit, supply keys and run per-source so output can be attributed and de-duplicated.
 
->  Raw output is stored in [`Output/`](Output/) alongside the screenshots.
+> 💾 Raw output is stored in [`Output/`](Output/) alongside the screenshots.
 
 ---
 
-##  Comparative Analysis
+## ⚖️ Comparative Analysis
 
 | Dimension | Task 1 · `baidu` | Task 2 · `all` |
 |:---|:---|:---|
@@ -200,7 +234,7 @@ Each failure follows the same pattern: *read `/etc/theHarvester/api-keys.yaml` �
 
 ---
 
-## Threat Model: How an Attacker Uses This Data
+## 🧨 Threat Model: How an Attacker Uses This Data
 
 The brief states the core idea plainly: each harvested email is a possible target for phishing and password attacks, and each sub-domain is another door into the organisation. Mapped to an attack chain:
 
@@ -215,7 +249,7 @@ Because every query goes to a third party, **the target never sees the reconnais
 
 ---
 
-##  MITRE ATT&CK Mapping
+## 🗺️ MITRE ATT&CK Mapping
 
 | Tactic | Technique | ID | Relevance |
 |:---|:---|:---:|:---|
@@ -244,7 +278,7 @@ Findings are framed as an organisation would act on them after running this tool
 
 ---
 
-##  Reproducing This Lab
+## 🔁 Reproducing This Lab
 
 ```bash
 # 1. Confirm the tool and read usage
@@ -293,7 +327,7 @@ Week2/
 
 ---
 
-##  References
+## 📚 References
 
 - [theHarvester on GitHub](https://github.com/laramies/theHarvester)
 - [MITRE ATT&CK: Reconnaissance (TA0043)](https://attack.mitre.org/tactics/TA0043/)
@@ -301,7 +335,7 @@ Week2/
 
 ---
 
-##  Disclaimer
+## ⚠️ Disclaimer
 
 This repository documents work completed in a training environment for **education and defensive research only**. `microsoft.com` was used as the course-designated target with passive, public-source queries exclusively. Do not run reconnaissance against any organisation without the owner's written authorisation. Unauthorised access is a criminal offence in most jurisdictions.
 
