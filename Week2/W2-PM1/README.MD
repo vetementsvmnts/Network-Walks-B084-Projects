@@ -7,8 +7,6 @@
 **W2-PM-FINAL · Cybersecurity · Networkwalks**
 
 ![Phase](https://img.shields.io/badge/Phase-1%20Recon%20%26%20Footprinting-blue)
-![Phase](https://img.shields.io/badge/Phase-2%20Scanning%20%26%20Discovery-blue)
-![Status](https://img.shields.io/badge/Phases%203--5-Completed%20Progress-lightgrey)
 ![Authorized](https://img.shields.io/badge/Permission-Secured-brightgreen)
 
 </div>
