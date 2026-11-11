@@ -1,6 +1,6 @@
 <div align="center">
 
-# `W2-PM3` // FOOTPRINTING WITH MALTEGO
+# `W2-PM3`  FOOTPRINTING WITH MALTEGO
 
 **Graph-based OSINT reconnaissance · Email enumeration · Passive footprinting**
 
@@ -16,7 +16,7 @@
 
 ---
 
-## 01 // Executive Summary
+## 01  Executive Summary
 
 This module covers the deployment of **Maltego Graph** on a Windows host and its use to perform **passive email footprinting** against the in-scope target domain `networkwalks.com`. Maltego is a link-analysis platform that models infrastructure, people and data as typed **entities** and expands them through **Transforms**, which query external data sources and return new entities to the graph.
 
@@ -26,7 +26,7 @@ The engagement produced a clean, repeatable workflow: provision the tooling and 
 
 ---
 
-## 02 // Objectives
+## 02  Objectives
 
 | ID | Task | Outcome |
 |----|------|---------|
@@ -35,7 +35,7 @@ The engagement produced a clean, repeatable workflow: provision the tooling and 
 
 ---
 
-## 03 // Environment
+## 03  Environment
 
 | Component | Detail |
 |-----------|--------|
@@ -51,7 +51,7 @@ The engagement produced a clean, repeatable workflow: provision the tooling and 
 
 ---
 
-## 04 // Methodology
+## 04  Methodology
 
 ```text
  [Provision]        [Activate]         [Seed]            [Enumerate]        [Review]
@@ -93,7 +93,7 @@ The transform output log shows runs of `To Emails @domain [Search Engine]`, `To 
 
 ---
 
-## 05 // Findings
+## 05  Findings
 
 | # | Entity type | Value | Linked from | Discovery path |
 |---|-------------|-------|-------------|----------------|
@@ -109,7 +109,7 @@ The transform output log shows runs of `To Emails @domain [Search Engine]`, `To 
 
 ---
 
-## 06 // Why This Matters (Threat Perspective)
+## 06  Why This Matters (Threat Perspective)
 
 The module brief frames the value of this data for an adversary: with email and related details in hand, an attacker can **search for related vulnerabilities and launch technology-specific attacks based on relevant exploits**. The brief's example is running WordPress-focused attacks against the site, with specific attack examples covered in later sections.
 
@@ -124,7 +124,7 @@ From a defensive and assessment viewpoint, harvested email addresses typically f
 
 ---
 
-## 07 // Defensive Considerations
+## 07  Defensive Considerations
 
 | Control | Rationale |
 |---------|-----------|
@@ -139,7 +139,7 @@ From a defensive and assessment viewpoint, harvested email addresses typically f
 
 ---
 
-## 08 // Tool Notes
+## 08  Tool Notes
 
 - Maltego was created by **Paterva** in **2008** in **Pretoria, South Africa**.
 - Maltego has powered over one million investigations worldwide since 2008.
@@ -152,7 +152,7 @@ From a defensive and assessment viewpoint, harvested email addresses typically f
 
 ---
 
-## 09 // Evidence
+## 09  Evidence
 
 Screenshots are stored in `Assets/`.
 
@@ -173,7 +173,7 @@ Screenshots are stored in `Assets/`.
 
 ---
 
-## 10 // Legal and Ethical Notice
+## 10 Legal and Ethical Notice
 
 This material is for **education and research only**. Footprinting is only legitimate when you:
 
@@ -187,6 +187,6 @@ Everything outside these cases is illegal. In most jurisdictions unauthorised ac
 
 <div align="center">
 
-`NETWORKWALKS // CYBERSECURITY & ETHICAL HACKING // WEEK 2 // W2-PM3`
+`NETWORKWALKS  CYBERSECURITY & ETHICAL HACKING WEEK 2 W2-PM3`
 
 </div>
