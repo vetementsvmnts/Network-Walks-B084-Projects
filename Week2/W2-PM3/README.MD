@@ -12,6 +12,10 @@
 ![Technique](https://img.shields.io/badge/Technique-Passive_OSINT-green?style=flat-square)
 ![Purpose](https://img.shields.io/badge/Purpose-Education_Only-lightgrey?style=flat-square)
 
+<br>
+
+<img src="Assets/Maltego.png" alt="Maltego graph for networkwalks.com showing the harvested email address" width="85%">
+
 </div>
 
 ---
@@ -101,6 +105,14 @@ The transform output log shows runs of `To Emails @domain [Search Engine]`, `To 
 
 **Final graph state:** 2 entities, 1 link (Domain → Email).
 
+<div align="center">
+
+<img src="Assets/Maltego.png" alt="Final Maltego graph: networkwalks.com linked to info@networkwalks.com" width="90%">
+
+*Figure 1. Final Maltego graph with the harvested email address linked to the seed domain.*
+
+</div>
+
 **Observations**
 
 - The only address surfaced is a **generic role mailbox**. No named individual accounts were returned in this run, so no personal naming convention (e.g. `first.last@`) could be inferred from this data alone.
@@ -154,22 +166,13 @@ From a defensive and assessment viewpoint, harvested email addresses typically f
 
 ## 09  Evidence
 
-Screenshots are stored in `Assets/`.
+Evidence is stored in `Assets/`.
 
 | Stage | File |
 |-------|------|
-| Maltego download page | `Assets/01-download-page.png` |
-| Installer and JRE prerequisite | `Assets/02-installer.png` |
-| Setup wizard completion | `Assets/03-setup-complete.png` |
-| Maltego ID activation and login | `Assets/04-activation.png` |
-| Ready-to-use blank graph | `Assets/05-blank-graph.png` |
-| Domain entity set to `networkwalks.com` | `Assets/06-domain-entity.png` |
-| Email transform selection | `Assets/07-email-transforms.png` |
-| Final graph with harvested email | `Assets/08-final-graph.png` |
+| Final Maltego graph with harvested email | `Assets/Maltego.png` |
 
-```markdown
-![Final graph](Assets/08-final-graph.png)
-```
+![Final graph](Assets/Maltego.png)
 
 ---
 
