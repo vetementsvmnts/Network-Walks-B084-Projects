@@ -79,11 +79,7 @@ john --show hash1.txt
 
 ### Evidence
 
-
-
-```
-
-```
+![John the Ripper CLI cracking session against three locked PDF hashes](./Assets/Overview.png)
 
 ### Result
 
@@ -114,7 +110,7 @@ candidates of any standard wordlist.
 
 ### Evidence
 
-
+![Networkwalks Hash Calculator and Password Cracker recovering the PDF password in-browser](./Assets/Password-Cracker.png)
 
 ### Result
 
@@ -139,7 +135,7 @@ The recovered credential was validated against the original artifact:
 3. Document decrypted successfully, confirming the recovered credential
    was correct (not a hash collision or false positive)
 
-> 📸 *Insert screenshot of the unlocked PDF / success flag here*
+![Unlocked PDFs displaying their captured flags after successful decryption](./Assets/Flag-Captured.png)
 
 ---
 
